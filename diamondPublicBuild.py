@@ -306,7 +306,7 @@ def run_diamond():
 
         if 'diamond save program as ' in corrected_command:
             try:
-                program_name = corrected_command.replace('diamond save program as ', '')
+                program_name = corrected_command.replace('diamond save prMogram as ', '')
                 ProgramFileName = SoftwareShortcutsPath + "\\" + program_name + ".bat"
                 runcommand = 'break>' + '"' + ProgramFileName + '"'
                 os.system(runcommand)
