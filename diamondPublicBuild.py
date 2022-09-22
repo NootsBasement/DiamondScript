@@ -256,8 +256,7 @@ def run_diamond():
                 VideoName = (Request.html.find('title', first=True).text)
 
                 def IllegalCharacterRemover(VideoName):
-                    illegalchar = ['@', '$', '%', '&', '\\', '/', ':', '*', '?', '"', "'", '<', '>', '|', '~', '`', '#',
-                                   '^', '+', '=', '{', '}', '[', ']', ';', '!', ':']
+                    illegalchar = ['@', '$', '%', '&', '\\', '/', ':', '*', '?', '"', "'", '<', '>', '|', '~', '`', '#','^', '+', '=', '{', '}', '[', ']', ';', '!', ':']
 
                     def Convert(VideoName):
                         VideoList = []
@@ -306,7 +305,7 @@ def run_diamond():
 
         if 'diamond save program as ' in corrected_command:
             try:
-                program_name = corrected_command.replace('diamond save prMogram as ', '')
+                program_name = corrected_command.replace('diamond save program as ', '')
                 ProgramFileName = SoftwareShortcutsPath + "\\" + program_name + ".bat"
                 runcommand = 'break>' + '"' + ProgramFileName + '"'
                 os.system(runcommand)
