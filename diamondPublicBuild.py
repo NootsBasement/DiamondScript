@@ -47,16 +47,14 @@ def FindHomeDir():
 HomeUserDirectory = FindHomeDir()
 
 #Finds Downloads Folder
-def FindDownloadsFolder():
-    for dirpath, dirnames, filenames in os.walk(HomeUserDirectory):
-        for dirname in dirnames:
-            if dirname == "Downloads":
-                DownloadsScriptPath = os.path.join(dirpath, dirname)
-                DownloadsScriptPathCreated = True
-                if DownloadsScriptPathCreated == True:
-                    print("Downloads Path Found")
-    return DownloadsScriptPath
-DownloadsFolderPath = FindDownloadsFolder()
+def EstablishDownloadsFolder():
+    try:
+        DownloadsPath = HomeUserDirectory + "\\Downloads"
+        return DownloadsPath
+    except:
+        print("Error when trying to establish Downloads location?")
+        exit()
+DownloadsFolderPath = EstablishDownloadsFolder()
 
 #Main folder path containing all files
 DiamondScriptFolderPath = DownloadsFolderPath + "\MainDiamondScript"
@@ -64,6 +62,12 @@ DiamondScriptFolderPath = DownloadsFolderPath + "\MainDiamondScript"
 MediaStoragePath = DiamondScriptFolderPath + "\MediaStorage"
 #SoftwareShortcuts path
 SoftwareShortcutsPath = DiamondScriptFolderPath + "\SoftwareShortcuts"
+
+def WritePIDNumberinTextFile():
+    DiamondPIDtxtFile = DiamondScriptFolderPath + "\\DiamondScriptPID.txt"
+    with open(DiamondPIDtxtFile, mode='w+') as DiamondPIDfile:
+        DiamondPIDfile.write(str(GetPIDNumber()))
+WritePIDNumberinTextFile()
 
 print("done loading script, script ready.")
 print('say out loud, "diamond help" to receive all command phrases and functions that come with the script.')
