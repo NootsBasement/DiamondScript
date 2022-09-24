@@ -149,7 +149,7 @@ def take_command():
         with sr.Microphone() as source:
             print('listening...')
             #timeout and phrase limit work together to fix bug where it listens forever (so far anyway)
-            voice = listener.listen(source, timeout=3, phrase_time_limit=10)
+            voice = listener.listen(source, timeout=3, phrase_time_limit=5)
             print("I finished listening.")
             #sends what was heard through googles speech api
             command = listener.recognize_google(voice)
@@ -403,12 +403,70 @@ def run_diamond():
                         os.startfile(programdirpath)
 
     #Help Commands
-    if 'diamond' in command:
-        if 'diamond help' in command:
-            print("Opening help file.")
-            talk("opening help file.")
-            HelpFilePath = DiamondScriptFolderPath + "\\DiamondCommands.txt"
-            os.startfile(HelpFilePath)
+    if 'diamond help' in corrected_command:
+        GitHubCommandsFile = """Instructions On How To Use DiamondScript.py:
+
+Youtube Search Commands:
+Example: "Diamond play updog impress you"
+search_keywords = ['diamond search on youtube ',
+                   'diamond search up on youtube ',
+                   'diamond look up on youtube ',
+                   'diamond search up on youtube ',
+                   'diamond play on youtube ',
+                   'diamond find on youtube ',
+                   'diamond find the song on youtube named ',
+                   'diamond play ']
+
+Time Commands:
+Example: "Diamond what time is it"
+time_keywords = ['diamond what is the time',
+                 "diamond what's the time",
+                 'diamond what time is it']
+
+Microphone Test Commands:
+Example: "Diamond can i be heard"
+microphone_keywords = ['diamond test for microphone input',
+                               'diamond this is a microphone test',
+                               'diamond testing microphone',
+                               'diamond testing for microphone input',
+                               'diamond can i be heard',
+                               'diamond can you hear me',
+                               'diamond are you there']
+
+Generic Response Commands:
+Example: "Diamond nae nae"
+generic_keyword = ['diamond how are you',
+                           'diamond how are you doing',
+                           'diamond nae nae']
+
+Web Search Commands:
+Able to search the web with default browser.
+Example: "Diamond search 13 times 4"
+
+System Commands:
+Turn off or restart your pc.
+Example: "diamond turn off my computer" (will run shutdown /s on pc.)
+Example: "diamond restart my computer" (will run shutdown /r on pc.)
+
+Downloading Youtube Commands:
+Able to download Youtube url links copied to the clipboard as .mp3, highest-quality .mp4, and lowest-quality .mp4
+Example: "diamond convert youtube to video" (will download youtube link on clipboard as highest quality .mp4)
+Example: "diamond convert youtube to audio" (will download youtube link on clipboard as .mp3)
+Example: "diamond convert youtube to bad video" (will download youtube link on clipboard as lowest quality .mp4)
+
+Custom Shortcut Commands
+Able to save file's paths to be opened later on by name of choice using voice commands.
+Example: (Assuming complete path to a file is on the clipboard) "Diamond save program as steam"
+Example: (Assuming shortcut file has been made) "Diamond open steam"
+
+Stopping Script Commands:
+Able to stop DiamondScript.py from running using voice commands.
+Example: "Diamond shut off"
+Example: "Diamond stop script"""
+        DiamondHelpFile = DiamondScriptFolderPath + "\\DiamondScript Commands.txt"
+        with open(os.open(DiamondHelpFile, os.O_CREAT | os.O_WRONLY, 0o777), mode="w") as f:
+            f.write(GitHubCommandsFile.replace('\r', ''))
+        os.startfile(DiamondHelpFile)
 
     #Exit Commands
     if 'diamond' in command:
