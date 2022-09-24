@@ -77,8 +77,13 @@ def CheckForUpdates():
         with open(UpdateStatusTxtFile, mode='r') as UpdateFile:
             FileRead = UpdateFile.read()
             if FileRead == "Check For Update":
+                DiamondPIDtxtFile = DiamondScriptFolderPath + "\\DiamondScriptPID.txt"
+                with open(DiamondPIDtxtFile, mode='r') as DiamondPIDfile:
+                   DiamondPIDNumber = DiamondPIDfile.read()
                 try:
                     os.startfile(UpdaterFilePath)
+                    pidkillcommand = "taskkill /PID " + DiamondPIDNumber + " /F"
+                    os.system(pidkillcommand)
                 except FileNotFoundError:
                     getupdatergit = requests.get("https://raw.githubusercontent.com/NootsBasement/DiamondScript-Updater/main/Updater").text
 
@@ -99,6 +104,8 @@ def CheckForUpdates():
                     print("Updater wasn't in main path, created")
                 finally:
                     os.startfile(UpdaterFilePath)
+                    pidkillcommand = "taskkill /PID " + DiamondPIDNumber + " /F"
+                    os.system(pidkillcommand)
     except FileNotFoundError:
         print("Updater text file wasn't found, creating.")
         with open(UpdateStatusTxtFile, mode='w+') as UpdateFile:
@@ -107,8 +114,13 @@ def CheckForUpdates():
         with open(UpdateStatusTxtFile, mode='r') as UpdateFile:
             FileRead = UpdateFile.read()
             if FileRead == "Check For Update":
+                DiamondPIDtxtFile = DiamondScriptFolderPath + "\\DiamondScriptPID.txt"
+                with open(DiamondPIDtxtFile, mode='r') as DiamondPIDfile:
+                    DiamondPIDNumber = DiamondPIDfile.read()
                 try:
                     os.startfile(UpdaterFilePath)
+                    pidkillcommand = "taskkill /PID " + DiamondPIDNumber + " /F"
+                    os.system(pidkillcommand)
                 except FileNotFoundError:
                     getupdatergit = requests.get("https://raw.githubusercontent.com/NootsBasement/DiamondScript-Updater/main/Updater").text
 
@@ -123,9 +135,9 @@ def CheckForUpdates():
                     for letter in conv_updater_tolist:
                         if letter != badchar:
                             EmptyList.append(letter)
-                    FixedGitHubDiamondScript = ''.join(EmptyList)
+                    FixedGitHubUpdaterScript = ''.join(EmptyList)
                     with open(UpdaterFilePath, mode='w+') as UpdateFile:
-                        UpdateFile.write(FixedGitHubDiamondScript)
+                        UpdateFile.write(FixedGitHubUpdaterScript)
                     print("Updater wasn't in main path, created")
 
     with open(UpdateStatusTxtFile, mode='r') as UpdateFile:
