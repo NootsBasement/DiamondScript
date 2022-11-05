@@ -211,7 +211,7 @@ def run_diamond():
             talk(Youtube_Respone)
 
         if 'diamond play ' in corrected_command:
-            song = corrected_command.replace(search, '')
+            song = corrected_command.replace('diamond play ', '')
             SearchYoutube()
 
     # Time Commands
