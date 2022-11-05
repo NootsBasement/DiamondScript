@@ -210,19 +210,9 @@ def run_diamond():
             print(song)
             talk(Youtube_Respone)
 
-        search_keywords = ['diamond search on youtube ',
-                           'diamond search up on youtube ',
-                           'diamond look up on youtube ',
-                           'diamond search up on youtube ',
-                           'diamond play on youtube ',
-                           'diamond find on youtube ',
-                           'diamond find the song on youtube named ',
-                           'diamond play ']
-
-        for search in search_keywords:
-            if search in corrected_command:
-                song = corrected_command.replace(search, '')
-                SearchYoutube()
+        if 'diamond play ' in corrected_command:
+            song = corrected_command.replace(search, '')
+            SearchYoutube()
 
     # Time Commands
     if 'diamond' in command:
