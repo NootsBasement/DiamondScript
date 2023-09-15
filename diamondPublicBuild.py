@@ -1,19 +1,63 @@
 import pathlib as plib
-import speech_recognition as sr
-import pyttsx3
-import pywhatkit
 import datetime
 import time
 import os
-import sys
 import subprocess
-import win32clipboard
-import pytube
-from pytube import YouTube
-from requests_html import HTMLSession
 import requests
-import psutil
 from collections import OrderedDict
+
+# Check and install speech_recognition
+try:
+    import speech_recognition as sr
+except ImportError:
+    print("speech_recognition module not found. Installing...")
+    os.system("pip install speech_recognition")
+finally:
+    import speech_recognition as sr
+
+# Check and install pyttsx3
+try:
+    import pyttsx3
+except ImportError:
+    print("pyttsx3 module not found. Installing...")
+    os.system("pip install pyttsx3")
+finally:
+    import pyttsx3
+
+# Check and install pywhatkit
+try:
+    import pywhatkit
+except ImportError:
+    print("pywhatkit module not found. Installing...")
+    os.system("pip install pywhatkit")
+finally:
+    import pywhatkit
+
+# Check and install win32clipboard
+try:
+    import win32clipboard
+except ImportError:
+    print("win32clipboard module not found. Please install it manually.")
+finally:
+    import win32clipboard
+
+# Check and install pytube
+try:
+    import pytube
+except ImportError:
+    print("pytube module not found. Installing...")
+    os.system("pip install pytube")
+finally:
+    import pytube
+
+# Check and install requests_html
+try:
+    from requests_html import HTMLSession
+except ImportError:
+    print("requests_html module not found. Installing...")
+    os.system("pip install requests_html")
+finally:
+    from requests_html import HTMLSession
 
 listener = sr.Recognizer()
 engine = pyttsx3.init()
